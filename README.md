@@ -1,4 +1,4 @@
-UogaUoga.ltAutoTests
+Baigiamiamajam darbui pasirinktas puslapis www.uogauoga.lt
 
 Baigiamojo darbo reikalavimai:
 
