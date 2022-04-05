@@ -18,6 +18,9 @@ namespace UogaUoga.ltAutoTests.Page
         private IWebElement InputFieldpassword => Driver.FindElement(By.CssSelector("#login_form > div:nth-child(3) > input"));
         private IWebElement EmailSubmitButton => Driver.FindElement(By.CssSelector("#login_form > div:nth-child(3) > button"));
         private IWebElement PasswordSubmitButton => Driver.FindElement(By.CssSelector("#login_form > div:nth-child(4) > button"));
+        private IWebElement SearchField => Driver.FindElement(By.CssSelector( "#quick_search_show > i"));
+        private IWebElement SearchIcon => Driver.FindElement(By.CssSelector("#quick_search > form > div > span > button > i"));
+        private IWebElement InputField => Driver.FindElement(By.CssSelector("#quick_search > form > div > input"));
 
         public UogaUogaPage(IWebDriver webdriver) : base(webdriver) { }
 
@@ -56,6 +59,19 @@ namespace UogaUoga.ltAutoTests.Page
         {
             InputFieldpassword.SendKeys(password);
             PasswordSubmitButton.Submit();
+        }
+
+        string text = "sampunas";
+        public void SearchByText()
+        {
+            SearchField.Click();
+            InputField.Clear();
+            InputField.SendKeys(text);
+        }
+
+        public void ClickOnSearchIcon()
+        {
+            SearchIcon.Click();
         }
     }
 }

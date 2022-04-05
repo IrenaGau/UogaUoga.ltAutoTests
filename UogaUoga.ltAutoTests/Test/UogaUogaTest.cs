@@ -38,28 +38,34 @@ namespace UogaUoga.ltAutoTests.Test
             page.InputFieldPasswordSubmit();
         }
 
-        //[Test]
-        //public static void Test2()
-        //{
+        [Test]
+        public static void SearchTest()
+        {
+            page.NavigateToPage();
+            page.ClosePopUp();
+            page.CloseCookies();
+            page.SearchByText();
+            page.ClickOnSearchIcon();
 
-        //}
+            //}
 
-        //[Test]
-        //public static void Test3()
-        //{
+            //[Test]
+            //public static void Test3()
+            //{
 
-        //}
+            //}
 
-        //[Test]
-        //public static void Test4()
-        //{
+            //[Test]
+            //public static void Test4()
+            //{
 
-        //}
+            //}
 
-        //[Test]
-        //public static void Test5()
-        //{
+            //[Test]
+            //public static void Test5()
+            //{
 
-        //}
+            //}
+        }
     }
 }
