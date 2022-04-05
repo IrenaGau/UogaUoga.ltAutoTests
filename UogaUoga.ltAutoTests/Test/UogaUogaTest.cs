@@ -21,11 +21,11 @@ namespace UogaUoga.ltAutoTests.Test
             page = new UogaUogaPage(driver);
         }
 
-        [OneTimeTearDown]
-        public static void OneTimeTearDown()
-        {
-            page.CloseBrowser();
-        }
+        //[OneTimeTearDown]
+        //public static void OneTimeTearDown()
+        //{
+        //    page.CloseBrowser();
+        //}
 
         [Test]
         public static void TestSignIn()
