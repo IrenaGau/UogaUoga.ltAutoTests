@@ -21,6 +21,7 @@ namespace UogaUoga.ltAutoTests.Page
         private IWebElement SearchField => Driver.FindElement(By.CssSelector( "#quick_search_show > i"));
         private IWebElement SearchIcon => Driver.FindElement(By.CssSelector("#quick_search > form > div > span > button > i"));
         private IWebElement InputField => Driver.FindElement(By.CssSelector("#quick_search > form > div > input"));
+        private IWebElement AddToCart => Driver.FindElement(By.CssSelector("#accordion > div.product_items > div > div:nth-child(2) > a > span.btn.btn-default.add2cart"));
 
         public UogaUogaPage(IWebDriver webdriver) : base(webdriver) { }
 
@@ -72,6 +73,11 @@ namespace UogaUoga.ltAutoTests.Page
         public void ClickOnSearchIcon()
         {
             SearchIcon.Click();
+        }
+
+        public void ClickAddToCart()
+        {
+            AddToCart.Click();
         }
     }
 }

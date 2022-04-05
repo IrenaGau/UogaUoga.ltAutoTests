@@ -39,13 +39,14 @@ namespace UogaUoga.ltAutoTests.Test
         }
 
         [Test]
-        public static void SearchTest()
+        public static void AddToCartBySearch()
         {
             page.NavigateToPage();
             page.ClosePopUp();
             page.CloseCookies();
             page.SearchByText();
             page.ClickOnSearchIcon();
+            page.ClickAddToCart();
 
             //}
 
