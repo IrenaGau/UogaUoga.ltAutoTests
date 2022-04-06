@@ -18,6 +18,8 @@ namespace UogaUoga.ltAutoTests.Test
             driver.Url = "https://uogauoga.lt/";
             driver.Manage().Window.Maximize();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+            driver.FindElement(By.CssSelector("#comProjectPopup > div > div:nth-child(2) > a")).Click();
+            driver.FindElement(By.CssSelector("#type_index > div.cookie_bar.clearfix > div > p > span")).Click();
             page = new UogaUogaPage(driver);
         }
 
@@ -30,9 +32,6 @@ namespace UogaUoga.ltAutoTests.Test
         [Test]
         public static void TestSignIn()
         {
-            page.NavigateToPage();
-            page.ClosePopUp();
-            page.CloseCookies();
             page.ProfileIconClick();
             page.InputFieldEmailSubmit();
             page.InputFieldPasswordSubmit();
@@ -41,32 +40,31 @@ namespace UogaUoga.ltAutoTests.Test
         [Test]
         public static void AddToCartBySearch()
         {
-            page.NavigateToPage();
-            page.ClosePopUp();
-            page.CloseCookies();
             page.SearchByText();
             page.ClickOnSearchIcon();
             page.ClickAddToCart();
 
-            //}
+        }
 
-            //[Test]
-            //public static void Test3()
-            //{
+        [Test]
+        public static void CartTest()
+        {
+            page.SearchByText2();
+            page.ClickOnSearchIcon();
+            page.ClickAddToCart();
+            page.ClickOnCartButton();
+            //page.ClickOnIconPlusButton();
+            //page.InsertQuantity();
 
-            //}
+        }
 
-            //[Test]
-            //public static void Test4()
-            //{
+        [Test]
+        public static void LocationTest()
+        {
+            page.ClickOnLocationButton();
+            page.ClickOnCityButton();
+            page.VerifyTextResult();
 
-            //}
-
-            //[Test]
-            //public static void Test5()
-            //{
-
-            //}
         }
     }
 }
