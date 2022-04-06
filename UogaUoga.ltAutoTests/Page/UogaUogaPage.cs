@@ -108,6 +108,15 @@ namespace UogaUoga.ltAutoTests.Page
             IconPlusButton.Click();
         }
 
+        public void InsertQuantity()
+        {
+            for (int i = 1; i < 5; i++)
+            {
+                IncreaseQuantity.Click();
+
+            }
+        }
+
         public void ClickOnLocationButton()
         {
             LocationButton.Click();
@@ -122,13 +131,6 @@ namespace UogaUoga.ltAutoTests.Page
             Assert.IsTrue("PC Palanga RIMI Hypermarket, Uoga Uoga produkcijos lentynos Malūno g. 10, Palanga".Equals(ResultElement.Text), $"Text is not the same, actual text is {ResultElement.Text}");
         }
 
-        public void InsertQuantity()
-        {
-            for (int i = 1; i < 5; i++)
-            {
-                IncreaseQuantity.Click();
-
-            }
-        }
+       
     }
 }
