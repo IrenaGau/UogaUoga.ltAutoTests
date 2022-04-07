@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Page\the.cs" />
     <Compile Include="PirmasTestas.cs" />
     <Compile Include="Page\BasePage.cs" />
     <Compile Include="Page\UogaUogaPage.cs" />

@@ -23,18 +23,22 @@ namespace UogaUoga.ltAutoTests.Test
             page = new UogaUogaPage(driver);
         }
 
-        //[OneTimeTearDown]
-        //public static void OneTimeTearDown()
-        //{
-        //    page.CloseBrowser();
-        //}
+        [OneTimeTearDown]
+        public static void OneTimeTearDown()
+        {
+            page.CloseBrowser();
+        }
 
         [Test]
-        public static void TestSignIn()
+        public static void TestSignInSignOut()
         {
             page.ProfileIconClick();
             page.InputFieldEmailSubmit();
             page.InputFieldPasswordSubmit();
+            //page.ProfileIconClick();
+            //page.SelectFromDropdownByIndex(2);
+
+            //page.LogOut();//??
         }
 
         [Test]
@@ -53,8 +57,8 @@ namespace UogaUoga.ltAutoTests.Test
             page.ClickOnSearchIcon();
             page.ClickAddToCart();
             page.ClickOnCartButton();
-            //page.ClickOnIconPlusButton();
-            //page.InsertQuantity();
+            page.ClickOnIconPlusButton();
+
 
         }
 
@@ -63,8 +67,8 @@ namespace UogaUoga.ltAutoTests.Test
         {
             page.ClickOnLocationButton();
             page.ClickOnCityButton();
-            page.VerifyTextResult();
-
+            //page.VerifyTextResult();
         }
+
     }
 }
