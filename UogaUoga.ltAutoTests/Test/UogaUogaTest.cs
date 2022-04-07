@@ -35,10 +35,7 @@ namespace UogaUoga.ltAutoTests.Test
             page.ProfileIconClick();
             page.InputFieldEmailSubmit();
             page.InputFieldPasswordSubmit();
-            //page.ProfileIconClick();
-            //page.SelectFromDropdownByIndex(2);
-
-            //page.LogOut();//??
+            page.SelectFromProfileMenuDropdown();//Neveikia
         }
 
         [Test]
@@ -58,8 +55,7 @@ namespace UogaUoga.ltAutoTests.Test
             page.ClickAddToCart();
             page.ClickOnCartButton();
             page.ClickOnIconPlusButton();
-
-
+            //page.VerifyTotalSum();
         }
 
         [Test]
@@ -68,6 +64,15 @@ namespace UogaUoga.ltAutoTests.Test
             page.ClickOnLocationButton();
             page.ClickOnCityButton();
             //page.VerifyTextResult();
+        }
+
+        [Test]
+        public static void NewsTest()
+        {
+            page.ClickOnNewsButton();
+            page.SelectVeganOption();
+            page.DropDownSort(); //Neveikia
+
         }
 
     }
