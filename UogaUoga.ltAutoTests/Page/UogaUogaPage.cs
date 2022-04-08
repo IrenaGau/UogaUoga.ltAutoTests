@@ -18,7 +18,7 @@ namespace UogaUoga.ltAutoTests.Page
         private const string text2 = "kremas";
 
         private SelectElement DropdownProfileMenu => new SelectElement(Driver.FindElement(By.CssSelector("#profile_menu > ul")));
-        private SelectElement DropdownSort => new SelectElement(Driver.FindElement(By.CssSelector("#filter-dropdown-sort_by")));
+        private SelectElement DropdownSort => new SelectElement(Driver.FindElement(By.CssSelector("#filter_block > div > div.filter-group.sort_block > div.dropdown.hidden-xs.hidden-sm > div")));
         
         private IWebElement PopUp => Driver.FindElement(By.CssSelector("#comProjectPopup > div > div:nth-child(2) > a"));
         private IWebElement Cookies => Driver.FindElement(By.CssSelector("#type_index > div.cookie_bar.clearfix > div > p > span"));
@@ -33,7 +33,7 @@ namespace UogaUoga.ltAutoTests.Page
         private IWebElement AddToCart => Driver.FindElement(By.CssSelector("#accordion > div.product_items > div > div:nth-child(2) > a > span.btn.btn-default.add2cart"));
         private IWebElement CartButton => Driver.FindElement(By.CssSelector("#cart_info > a > em"));
         private IWebElement IconPlusButton => Driver.FindElement(By.CssSelector("#cart_items > table > tbody > tr > td.amount.hidden-xs > form > div > div > span:nth-child(3) > button > span"));
-        private IWebElement TotalSum => Driver.FindElement(By.Id(".col col-xs-4 text-right>43,90 €</div>"));
+        private IWebElement TotalSum => Driver.FindElement(By.CssSelector(".col.col-xs-5.text-right"));
         private IWebElement LocationButton => Driver.FindElement(By.CssSelector("#headerLocationLink > a > i"));
         private IWebElement CityButton => Driver.FindElement(By.CssSelector("#departments_listing > div.filters > div > div > ul > li:nth-child(10) > a"));
         private IWebElement ResultElement => Driver.FindElement(By.CssSelector("#departments_listing > div.container-fluid > div > div > span"));
@@ -125,7 +125,7 @@ namespace UogaUoga.ltAutoTests.Page
 
         public void VerifyTotalSum()
         {
-            GetWait().Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("#cart_summary > div.total > div > div.col.col-xs-5.text-right")));
+            GetWait().Until(ExpectedConditions.InvisibilityOfElementLocated(By.CssSelector(".col.col-xs-5.text-right")));
             Assert.IsTrue("43,90 €".Equals(TotalSum.Text), $"Text is not the same, actual text is {TotalSum.Text}");
         }
 
@@ -157,7 +157,7 @@ namespace UogaUoga.ltAutoTests.Page
 
         public void DropDownSort()
         {
-            DropdownSort.SelectByIndex(3);
+            DropdownSort.SelectByIndex(2);
         }
     }
 }

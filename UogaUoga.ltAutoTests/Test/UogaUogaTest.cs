@@ -35,7 +35,7 @@ namespace UogaUoga.ltAutoTests.Test
             page.ProfileIconClick();
             page.InputFieldEmailSubmit();
             page.InputFieldPasswordSubmit();
-            page.SelectFromProfileMenuDropdown();//Neveikia
+            //page.SelectFromProfileMenuDropdown();//Neveikia
         }
 
         [Test]
@@ -55,7 +55,7 @@ namespace UogaUoga.ltAutoTests.Test
             page.ClickAddToCart();
             page.ClickOnCartButton();
             page.ClickOnIconPlusButton();
-            //page.VerifyTotalSum();
+            page.VerifyTotalSum();
         }
 
         [Test]
