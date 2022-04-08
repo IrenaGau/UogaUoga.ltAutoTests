@@ -18,9 +18,10 @@ namespace UogaUoga.ltAutoTests.Test
             driver.Url = "https://uogauoga.lt/";
             driver.Manage().Window.Maximize();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
-            driver.FindElement(By.CssSelector("#comProjectPopup > div > div:nth-child(2) > a")).Click();
-            driver.FindElement(By.CssSelector("#type_index > div.cookie_bar.clearfix > div > p > span")).Click();
             page = new UogaUogaPage(driver);
+            page.NavigateToPage();
+            page.ClosePopUp();
+            page.CloseCookies();
         }
 
         [OneTimeTearDown]
@@ -55,7 +56,7 @@ namespace UogaUoga.ltAutoTests.Test
             page.ClickAddToCart();
             page.ClickOnCartButton();
             page.ClickOnIconPlusButton();
-            page.VerifyTotalSum();
+            page.VerifyTotalSum();//Neveikia
         }
 
         [Test]
@@ -63,7 +64,7 @@ namespace UogaUoga.ltAutoTests.Test
         {
             page.ClickOnLocationButton();
             page.ClickOnCityButton();
-            //page.VerifyTextResult();
+            page.VerifyTextResult();
         }
 
         [Test]
@@ -72,7 +73,6 @@ namespace UogaUoga.ltAutoTests.Test
             page.ClickOnNewsButton();
             page.SelectVeganOption();
             page.DropDownSort(); //Neveikia
-
         }
 
     }

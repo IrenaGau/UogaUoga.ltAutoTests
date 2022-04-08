@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SeleniumExtras.WaitHelpers;
 using NUnit.Framework;
+using System.Threading;
 
 namespace UogaUoga.ltAutoTests.Page
 {
@@ -18,7 +19,7 @@ namespace UogaUoga.ltAutoTests.Page
         private const string text2 = "kremas";
 
         private SelectElement DropdownProfileMenu => new SelectElement(Driver.FindElement(By.CssSelector("#profile_menu > ul")));
-        private SelectElement DropdownSort => new SelectElement(Driver.FindElement(By.CssSelector("#filter_block > div > div.filter-group.sort_block > div.dropdown.hidden-xs.hidden-sm > div")));
+        private SelectElement DropdownSort => new SelectElement(Driver.FindElement(By.Id("filter-dropdown-sort_by")));
         
         private IWebElement PopUp => Driver.FindElement(By.CssSelector("#comProjectPopup > div > div:nth-child(2) > a"));
         private IWebElement Cookies => Driver.FindElement(By.CssSelector("#type_index > div.cookie_bar.clearfix > div > p > span"));
@@ -33,32 +34,33 @@ namespace UogaUoga.ltAutoTests.Page
         private IWebElement AddToCart => Driver.FindElement(By.CssSelector("#accordion > div.product_items > div > div:nth-child(2) > a > span.btn.btn-default.add2cart"));
         private IWebElement CartButton => Driver.FindElement(By.CssSelector("#cart_info > a > em"));
         private IWebElement IconPlusButton => Driver.FindElement(By.CssSelector("#cart_items > table > tbody > tr > td.amount.hidden-xs > form > div > div > span:nth-child(3) > button > span"));
-        private IWebElement TotalSum => Driver.FindElement(By.CssSelector(".col.col-xs-5.text-right"));
+        private IWebElement TotalSum => Driver.FindElement(By.XPath("//div[text()='Bendra suma:']//following::div[1]"));
         private IWebElement LocationButton => Driver.FindElement(By.CssSelector("#headerLocationLink > a > i"));
         private IWebElement CityButton => Driver.FindElement(By.CssSelector("#departments_listing > div.filters > div > div > ul > li:nth-child(10) > a"));
-        private IWebElement ResultElement => Driver.FindElement(By.CssSelector("#departments_listing > div.container-fluid > div > div > span"));
+        private IWebElement ResultElement => Driver.FindElement(By.CssSelector("#departments_listing > div.container-fluid > div > div > span > span.name"));
+        private IWebElement ResultElementSecond => Driver.FindElement(By.CssSelector("#departments_listing > div.container-fluid > div > div > span > span:nth-child(2)"));
         private IWebElement NewsButton => Driver.FindElement(By.CssSelector("#mega_menu > li:nth-child(1) > a > h4"));
         private IWebElement SelectVegan => Driver.FindElement(By.CssSelector("#filter_fmodcheck_6 > h5 > span"));
-        private IWebElement ToSortButton => Driver.FindElement(By.CssSelector("#filter_block > div > div.filter-group.sort_block > div.dropdown.hidden-xs.hidden-sm.open"));
+        //private IWebElement ToSortButton => Driver.FindElement(By.CssSelector("filter-dropdown-sort_by"));
         public UogaUogaPage(IWebDriver webdriver) : base(webdriver) { }
 
-        //public void NavigateToPage()
-        //{
-        //    if (Driver.Url != PageAddress)
-        //        Driver.Url = PageAddress;
-        //}
+        public void NavigateToPage()
+        {
+            if (Driver.Url != PageAddress)
+                Driver.Url = PageAddress;
+        }
 
-        //public void ClosePopUp()
-        //{
-        //    GetWait().Until(ExpectedConditions.ElementIsVisible(By.CssSelector("#comProjectPopup > div > div:nth-child(2) > a")));
-        //    PopUp.Click();
-        //}
+        public void ClosePopUp()
+        {
+            GetWait().Until(ExpectedConditions.ElementIsVisible(By.CssSelector("#comProjectPopup > div > div:nth-child(2) > a")));
+            PopUp.Click();
+        }
 
-        //public void CloseCookies()
-        //{
-        //    GetWait().Until(ExpectedConditions.ElementIsVisible(By.CssSelector("#type_index > div.cookie_bar.clearfix > div > p > span")));
-        //    Cookies.Click();
-        //}
+        public void CloseCookies()
+        {
+            GetWait().Until(ExpectedConditions.ElementIsVisible(By.CssSelector("#type_index > div.cookie_bar.clearfix > div > p > span")));
+            Cookies.Click();
+        }
 
         public void ProfileIconClick()
         {
@@ -125,7 +127,8 @@ namespace UogaUoga.ltAutoTests.Page
 
         public void VerifyTotalSum()
         {
-            GetWait().Until(ExpectedConditions.InvisibilityOfElementLocated(By.CssSelector(".col.col-xs-5.text-right")));
+            //GetWait().Until(ExpectedConditions.InvisibilityOfElementLocated(By.XPath("//div[text()='Bendra suma:']//following::div[1]")));
+            Thread.Sleep(5000);
             Assert.IsTrue("43,90 €".Equals(TotalSum.Text), $"Text is not the same, actual text is {TotalSum.Text}");
         }
 
@@ -142,7 +145,8 @@ namespace UogaUoga.ltAutoTests.Page
         public void VerifyTextResult()// klaida, nes nesutampa tekstas, nors teksta kopijuoju identiska, nesuprantu kame beda
         {
             GetWait().Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("#departments_listing > div.container-fluid > div > div > span")));
-            Assert.IsTrue("RIMI Utena, \"Uoga Uoga\" produkcijos lentynos Basanavičiaus g. 52, Utena".Equals(ResultElement.Text), $"Text is not the same, actual text is {ResultElement.Text}");
+            Assert.AreEqual("RIMI Utena, \"Uoga Uoga\" produkcijos lentynos",ResultElement.Text, $"Text is not the same, actual text is {ResultElement.Text}");
+            Assert.AreEqual("Basanavičiaus g. 52, Utena", ResultElementSecond.Text, $"Text is not the same, actual text is {ResultElementSecond.Text}");
         }
 
         public void ClickOnNewsButton()
@@ -158,6 +162,7 @@ namespace UogaUoga.ltAutoTests.Page
         public void DropDownSort()
         {
             DropdownSort.SelectByIndex(2);
+
         }
     }
 }
