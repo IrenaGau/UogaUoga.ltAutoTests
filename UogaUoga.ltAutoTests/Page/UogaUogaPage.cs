@@ -18,7 +18,6 @@ namespace UogaUoga.ltAutoTests.Page
         private const string text = "šampūnas";
         private const string text2 = "kremas";
 
-        private SelectElement DropdownProfileMenu => new SelectElement(Driver.FindElement(By.CssSelector("#profile_menu > ul")));
         private SelectElement DropdownSort => new SelectElement(Driver.FindElement(By.Id("filter-dropdown-sort_by")));
         
         private IWebElement PopUp => Driver.FindElement(By.CssSelector("#comProjectPopup > div > div:nth-child(2) > a"));
@@ -28,6 +27,8 @@ namespace UogaUoga.ltAutoTests.Page
         private IWebElement InputFieldpassword => Driver.FindElement(By.CssSelector("#login_form > div:nth-child(3) > input"));
         private IWebElement EmailSubmitButton => Driver.FindElement(By.CssSelector("#login_form > div:nth-child(3) > button"));
         private IWebElement PasswordSubmitButton => Driver.FindElement(By.CssSelector("#login_form > div:nth-child(4) > button"));
+        private IWebElement ProfileMenu => Driver.FindElement(By.CssSelector("#profile_menu > ul"));
+        private IWebElement ProfileMenuSignOut => Driver.FindElement(By.CssSelector("#profile_menu > ul > li:nth-child(3) > a"));
         private IWebElement SearchField => Driver.FindElement(By.CssSelector("#quick_search_show > i"));
         private IWebElement SearchIcon => Driver.FindElement(By.CssSelector("#quick_search > form > div > span > button > i"));
         private IWebElement InputField => Driver.FindElement(By.CssSelector("#quick_search > form > div > input"));
@@ -41,7 +42,11 @@ namespace UogaUoga.ltAutoTests.Page
         private IWebElement ResultElementSecond => Driver.FindElement(By.CssSelector("#departments_listing > div.container-fluid > div > div > span > span:nth-child(2)"));
         private IWebElement NewsButton => Driver.FindElement(By.CssSelector("#mega_menu > li:nth-child(1) > a > h4"));
         private IWebElement SelectVegan => Driver.FindElement(By.CssSelector("#filter_fmodcheck_6 > h5 > span"));
-        //private IWebElement ToSortButton => Driver.FindElement(By.CssSelector("filter-dropdown-sort_by"));
+        private IWebElement SortByButton => Driver.FindElement(By.CssSelector("#filter-dropdown-sort_by"));
+        private IWebElement SortByPriceOption => Driver.FindElement(By.CssSelector("#filter_block > div > div.filter-group.sort_block > div.dropdown.hidden-xs.hidden-sm.open > div > ul > li:nth-child(2)"));
+        private IWebElement SortResultElement => Driver.FindElement(By.CssSelector("#products_column > div.product_listing > div > div:nth-child(1) > a > span.title > span.product_name"));
+        private IWebElement SortResultElement2 => Driver.FindElement(By.CssSelector("#products_column > div.product_listing > div > div:nth-child(2) > a > span.title > span.product_name"));
+       
         public UogaUogaPage(IWebDriver webdriver) : base(webdriver) { }
 
         public void NavigateToPage()
@@ -81,11 +86,13 @@ namespace UogaUoga.ltAutoTests.Page
             PasswordSubmitButton.Submit();
         }
 
-        public void SelectFromProfileMenuDropdown()
+        public void SignOut()
         {
-            DropdownProfileMenu.SelectByText("Atsijungti");
+            GetWait().Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("item")));
+            ProfileIcon.Click();
+            GetWait().Until(ExpectedConditions.ElementIsVisible(By.CssSelector("#profile_menu > ul")));
+            ProfileMenuSignOut.Click();
         }
-
 
         public void SearchByText()
         {
@@ -142,7 +149,7 @@ namespace UogaUoga.ltAutoTests.Page
             CityButton.Click();
         }
 
-        public void VerifyTextResult()// klaida, nes nesutampa tekstas, nors teksta kopijuoju identiska, nesuprantu kame beda
+        public void VerifyTextResult()
         {
             GetWait().Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("#departments_listing > div.container-fluid > div > div > span")));
             Assert.AreEqual("RIMI Utena, \"Uoga Uoga\" produkcijos lentynos",ResultElement.Text, $"Text is not the same, actual text is {ResultElement.Text}");
@@ -159,11 +166,19 @@ namespace UogaUoga.ltAutoTests.Page
             SelectVegan.Click();
         }
 
-        public void DropDownSort()
+        public void SortByPrice()
         {
-            DropdownSort.SelectByIndex(2);
-
+            GetWait().Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("ajax_loader")));
+            SortByButton.Click();
+            SortByPriceOption.Click();
         }
+
+        public void VerifySortResult()
+        {
+            Assert.AreEqual("BLAKSTIENŲ DRAMA", SortResultElement.Text, $"Text is not the same, actual text is {SortResultElement.Text}");
+            Assert.AreEqual("PAMILK IŠ NAUJO", SortResultElement2.Text, $"Text is not the same, actual text is {SortResultElement2.Text}");
+        }
+
     }
 }
 
