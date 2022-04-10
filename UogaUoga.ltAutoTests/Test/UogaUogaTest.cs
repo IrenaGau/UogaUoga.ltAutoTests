@@ -12,6 +12,7 @@ namespace UogaUoga.ltAutoTests.Test
         public static UogaHomePage HomePage;
         public static UogaCartPage CartPage;
         public static UogaSearchResultPage SearchResultPage;
+        public static CatalogPage CatalogPage;
 
         [OneTimeSetUp]
         public static void OneTimeSetUp()
@@ -23,9 +24,11 @@ namespace UogaUoga.ltAutoTests.Test
             HomePage = new UogaHomePage(driver);
             CartPage = new UogaCartPage(driver);
             SearchResultPage = new UogaSearchResultPage(driver);
+            CatalogPage = new CatalogPage(driver);
             HomePage.NavigateToPage();
             HomePage.ClosePopUp();
             HomePage.AcceptCookies();
+
         }
 
         [OneTimeTearDown]
@@ -46,38 +49,38 @@ namespace UogaUoga.ltAutoTests.Test
         [Test]
         public static void AddToCartBySearch()
         {
-            page.SearchByText();
-            page.ClickOnSearchIcon();
-            page.ClickAddToCartShampoo();
+            HomePage.SearchByText();
+            HomePage.ClickOnSearchIcon();
+            SearchResultPage.ClickAddToCartShampoo();
 
         }
 
         [Test]
         public static void CartTest()
         {
-            page.SearchByText2();
-            page.ClickOnSearchIcon();
-            page.ClickAddToCartMascara();
-            page.ClickOnCartButton();
-            page.ClickOnIconPlusButton();
-            page.VerifyTotalSum();
+            HomePage.SearchByText2();
+            HomePage.ClickOnSearchIcon();
+            SearchResultPage.ClickAddToCartMascara();
+            CartPage.ClickOnCartButton();
+            CartPage.ClickOnIconPlusButton();
+            CartPage.VerifyTotalSum();
         }
 
         [Test]
         public static void LocationTest()
         {
-            page.ClickOnLocationButton();
-            page.ClickOnCityButton();
-            page.VerifyTextResult();
+            HomePage.ClickOnLocationButton();
+            HomePage.ClickOnCityButton();
+            HomePage.VerifyTextResult();
         }
 
         [Test]
         public static void NewsTest()
         {
-            page.ClickOnNewsButton();
-            page.SelectVeganOption();
-            page.SortByPrice();
-            page.VerifySortResult();
+            CatalogPage.ClickOnNewsButton();
+            CatalogPage.SelectVeganOption();
+            CatalogPage.SortByPrice();
+            CatalogPage.VerifySortResult();
         }
 
     }

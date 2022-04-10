@@ -33,21 +33,11 @@ namespace UogaUoga.ltAutoTests.Page
         private IWebElement InputField => Driver.FindElement(By.CssSelector("#quick_search > form > div > input"));
         private IWebElement AddToCartShampoo => Driver.FindElement(By.CssSelector("#accordion > div.product_items > div > div > a > span.btn.btn-default.add2cart"));
         private IWebElement AddToCartMascara => Driver.FindElement(By.CssSelector("#accordion > div.product_items > div > div > a > span.btn.btn-default.add2cart"));
-        private IWebElement CartButton => Driver.FindElement(By.CssSelector("#cart_info > a > em"));
-        private IWebElement IconPlusButton => Driver.FindElement(By.CssSelector("#cart_items > table > tbody > tr > td.amount.hidden-xs > form > div > div > span:nth-child(3) > button > span"));
-        private IReadOnlyCollection<IWebElement> TotalSums => Driver.FindElements(By.XPath("//div[text()='Bendra suma:']//following::div[1]"));
         private IWebElement LocationButton => Driver.FindElement(By.CssSelector("#headerLocationLink > a > i"));
         private IWebElement CityButton => Driver.FindElement(By.CssSelector("#departments_listing > div.filters > div > div > ul > li:nth-child(10) > a"));
         private IWebElement ResultElement => Driver.FindElement(By.CssSelector("#departments_listing > div.container-fluid > div > div > span > span.name"));
         private IWebElement ResultElementSecond => Driver.FindElement(By.CssSelector("#departments_listing > div.container-fluid > div > div > span > span:nth-child(2)"));
-        private IWebElement NewsButton => Driver.FindElement(By.CssSelector("#mega_menu > li:nth-child(1) > a > h4"));
-        private IWebElement SelectVegan => Driver.FindElement(By.CssSelector("#filter_fmodcheck_6 > h5 > span"));
-        private IWebElement SortByButton => Driver.FindElement(By.CssSelector("#filter-dropdown-sort_by"));
-        private IWebElement SortByPriceOption => Driver.FindElement(By.CssSelector("#filter_block > div > div.filter-group.sort_block > div.dropdown.hidden-xs.hidden-sm.open > div > ul > li:nth-child(2)"));
-        private IWebElement SortResultElement => Driver.FindElement(By.CssSelector("#products_column > div.product_listing > div > div:nth-child(1) > a > span.title > span.product_name"));
-        private IWebElement SortResultElement2 => Driver.FindElement(By.CssSelector("#products_column > div.product_listing > div > div:nth-child(2) > a > span.title > span.product_name"));
-
-       
+        
 
         public void NavigateToPage()
         {
@@ -115,35 +105,18 @@ namespace UogaUoga.ltAutoTests.Page
             SearchIcon.Click();
         }
 
-        public void ClickAddToCartShampoo()
-        {
-            GetWait().Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("ajax_loader")));
-            AddToCartShampoo.Click();
-        }
+        //public void ClickAddToCartShampoo()
+        //{
+        //    GetWait().Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("ajax_loader")));
+        //    AddToCartShampoo.Click();
+        //}
 
-        public void ClickAddToCartMascara()
-        {
-            GetWait().Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("ajax_loader")));
-            AddToCartMascara.Click();
-        }
+        //public void ClickAddToCartMascara()
+        //{
+        //    GetWait().Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("ajax_loader")));
+        //    AddToCartMascara.Click();
+        //}
 
-        public void ClickOnCartButton()
-        {
-            GetWait().Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("ajax_loader")));
-            CartButton.Click();
-        }
-
-        public void ClickOnIconPlusButton()
-        {
-            IconPlusButton.Click();
-        }
-
-        public void VerifyTotalSum()
-        {
-            Thread.Sleep(5000);
-            //GetWait().Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[text()='Bendra suma:']//following::div[1]")));
-            Assert.IsTrue("47,85 €".Equals(TotalSums.ElementAt(1).Text), $"Text is not the same, actual text is {TotalSums.ElementAt(1).Text}");
-        }
 
         public void ClickOnLocationButton()
         {
@@ -160,29 +133,6 @@ namespace UogaUoga.ltAutoTests.Page
             GetWait().Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("#departments_listing > div.container-fluid > div > div > span")));
             Assert.AreEqual("RIMI Utena, \"Uoga Uoga\" produkcijos lentynos", ResultElement.Text, $"Text is not the same, actual text is {ResultElement.Text}");
             Assert.AreEqual("Basanavičiaus g. 52, Utena", ResultElementSecond.Text, $"Text is not the same, actual text is {ResultElementSecond.Text}");
-        }
-
-        public void ClickOnNewsButton()
-        {
-            NewsButton.Click();
-        }
-
-        public void SelectVeganOption()
-        {
-            SelectVegan.Click();
-        }
-
-        public void SortByPrice()
-        {
-            GetWait().Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("ajax_loader")));
-            SortByButton.Click();
-            SortByPriceOption.Click();
-        }
-
-        public void VerifySortResult()
-        {
-            Assert.AreEqual("BLAKSTIENŲ DRAMA", SortResultElement.Text, $"Text is not the same, actual text is {SortResultElement.Text}");
-            Assert.AreEqual("PAMILK IŠ NAUJO", SortResultElement2.Text, $"Text is not the same, actual text is {SortResultElement2.Text}");
         }
 
     }
