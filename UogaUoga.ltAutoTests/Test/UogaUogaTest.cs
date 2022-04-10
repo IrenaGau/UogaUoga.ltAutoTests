@@ -44,7 +44,7 @@ namespace UogaUoga.ltAutoTests.Test
         {
             page.SearchByText();
             page.ClickOnSearchIcon();
-            page.ClickAddToCart();
+            page.ClickAddToCartShampoo();
 
         }
 
@@ -53,10 +53,10 @@ namespace UogaUoga.ltAutoTests.Test
         {
             page.SearchByText2();
             page.ClickOnSearchIcon();
-            page.ClickAddToCart();
+            page.ClickAddToCartMascara();
             page.ClickOnCartButton();
             page.ClickOnIconPlusButton();
-            //page.VerifyTotalSum();//Neveikia
+            page.VerifyTotalSum();
         }
 
         [Test]

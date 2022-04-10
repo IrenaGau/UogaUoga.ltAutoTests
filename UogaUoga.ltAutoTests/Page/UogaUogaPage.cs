@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using SeleniumExtras.WaitHelpers;
 using NUnit.Framework;
 using System.Threading;
+using System.Linq;
 
 namespace UogaUoga.ltAutoTests.Page
 {
@@ -15,11 +16,10 @@ namespace UogaUoga.ltAutoTests.Page
         private const string PageAddress = "https://uogauoga.lt/";
         private const string email = "naudotojas@yahoo.com";
         private const string password = "uoga";
-        private const string text = "šampūnas";
-        private const string text2 = "kremas";
+        private const string text = "šampūnas vaikams";
+        private const string text2 = "tušas";
 
-        private SelectElement DropdownSort => new SelectElement(Driver.FindElement(By.Id("filter-dropdown-sort_by")));
-        
+
         private IWebElement PopUp => Driver.FindElement(By.CssSelector("#comProjectPopup > div > div:nth-child(2) > a"));
         private IWebElement Cookies => Driver.FindElement(By.CssSelector("#type_index > div.cookie_bar.clearfix > div > p > span"));
         private IWebElement ProfileIcon => Driver.FindElement(By.CssSelector("#profile_menu > a > i"));
@@ -27,15 +27,15 @@ namespace UogaUoga.ltAutoTests.Page
         private IWebElement InputFieldpassword => Driver.FindElement(By.CssSelector("#login_form > div:nth-child(3) > input"));
         private IWebElement EmailSubmitButton => Driver.FindElement(By.CssSelector("#login_form > div:nth-child(3) > button"));
         private IWebElement PasswordSubmitButton => Driver.FindElement(By.CssSelector("#login_form > div:nth-child(4) > button"));
-        private IWebElement ProfileMenu => Driver.FindElement(By.CssSelector("#profile_menu > ul"));
         private IWebElement ProfileMenuSignOut => Driver.FindElement(By.CssSelector("#profile_menu > ul > li:nth-child(3) > a"));
         private IWebElement SearchField => Driver.FindElement(By.CssSelector("#quick_search_show > i"));
         private IWebElement SearchIcon => Driver.FindElement(By.CssSelector("#quick_search > form > div > span > button > i"));
         private IWebElement InputField => Driver.FindElement(By.CssSelector("#quick_search > form > div > input"));
-        private IWebElement AddToCart => Driver.FindElement(By.CssSelector("#accordion > div.product_items > div > div:nth-child(2) > a > span.btn.btn-default.add2cart"));
+        private IWebElement AddToCartShampoo => Driver.FindElement(By.CssSelector("#accordion > div.product_items > div > div > a > span.btn.btn-default.add2cart"));
+        private IWebElement AddToCartMascara => Driver.FindElement(By.CssSelector("#accordion > div.product_items > div > div > a > span.btn.btn-default.add2cart"));
         private IWebElement CartButton => Driver.FindElement(By.CssSelector("#cart_info > a > em"));
         private IWebElement IconPlusButton => Driver.FindElement(By.CssSelector("#cart_items > table > tbody > tr > td.amount.hidden-xs > form > div > div > span:nth-child(3) > button > span"));
-        private IWebElement TotalSum => Driver.FindElement(By.XPath("//div[text()='Bendra suma:']//following::div[1]"));
+        private IReadOnlyCollection<IWebElement> TotalSums => Driver.FindElements(By.XPath("//div[text()='Bendra suma:']//following::div[1]"));
         private IWebElement LocationButton => Driver.FindElement(By.CssSelector("#headerLocationLink > a > i"));
         private IWebElement CityButton => Driver.FindElement(By.CssSelector("#departments_listing > div.filters > div > div > ul > li:nth-child(10) > a"));
         private IWebElement ResultElement => Driver.FindElement(By.CssSelector("#departments_listing > div.container-fluid > div > div > span > span.name"));
@@ -115,10 +115,16 @@ namespace UogaUoga.ltAutoTests.Page
             SearchIcon.Click();
         }
 
-        public void ClickAddToCart()
+        public void ClickAddToCartShampoo()
         {
             GetWait().Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("ajax_loader")));
-            AddToCart.Click();
+            AddToCartShampoo.Click();
+        }
+
+        public void ClickAddToCartMascara()
+        {
+            GetWait().Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("ajax_loader")));
+            AddToCartMascara.Click();
         }
 
         public void ClickOnCartButton()
@@ -134,9 +140,9 @@ namespace UogaUoga.ltAutoTests.Page
 
         public void VerifyTotalSum()
         {
-            //GetWait().Until(ExpectedConditions.InvisibilityOfElementLocated(By.XPath("//div[text()='Bendra suma:']//following::div[1]")));
-            Thread.Sleep(5000);
-            Assert.IsTrue("43,90 €".Equals(TotalSum.Text), $"Text is not the same, actual text is {TotalSum.Text}");
+            Thread.Sleep(3000);
+            //GetWait().Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[text()='Bendra suma:']//following::div[1]")));
+            Assert.IsTrue("47,85 €".Equals(TotalSums.ElementAt(1).Text), $"Text is not the same, actual text is {TotalSums.ElementAt(1).Text}");
         }
 
         public void ClickOnLocationButton()
