@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace UogaUoga.ltAutoTests.Tools
 {
-    public class Screenshoots
+    public class MyScreenshot
     {
         public static void TakeScreenshot(IWebDriver webdriver)
         {

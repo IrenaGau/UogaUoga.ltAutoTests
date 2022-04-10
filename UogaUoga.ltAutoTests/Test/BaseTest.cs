@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UogaUoga.ltAutoTests.Page;
+using UogaUoga.ltAutoTests.Tools;
 
 namespace UogaUoga.ltAutoTests.Test
 {
@@ -32,6 +34,15 @@ namespace UogaUoga.ltAutoTests.Test
             _HomePage.NavigateToPage();
             _HomePage.ClosePopUp();
             _HomePage.AcceptCookies();
+        }
+
+        [TearDown]
+        public static void TearDown()
+        {
+            if (TestContext.CurrentContext.Result.Outcome != ResultState.Success)
+            {
+                MyScreenshot.TakeScreenshot(driver);
+            }
         }
 
         [OneTimeTearDown]
