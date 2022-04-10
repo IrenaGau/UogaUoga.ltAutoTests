@@ -28,7 +28,6 @@ namespace UogaUoga.ltAutoTests.Test
             HomePage.NavigateToPage();
             HomePage.ClosePopUp();
             HomePage.AcceptCookies();
-
         }
 
         [OneTimeTearDown]

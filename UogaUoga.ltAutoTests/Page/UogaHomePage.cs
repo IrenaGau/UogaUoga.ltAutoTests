@@ -31,8 +31,6 @@ namespace UogaUoga.ltAutoTests.Page
         private IWebElement SearchField => Driver.FindElement(By.CssSelector("#quick_search_show > i"));
         private IWebElement SearchIcon => Driver.FindElement(By.CssSelector("#quick_search > form > div > span > button > i"));
         private IWebElement InputField => Driver.FindElement(By.CssSelector("#quick_search > form > div > input"));
-        private IWebElement AddToCartShampoo => Driver.FindElement(By.CssSelector("#accordion > div.product_items > div > div > a > span.btn.btn-default.add2cart"));
-        private IWebElement AddToCartMascara => Driver.FindElement(By.CssSelector("#accordion > div.product_items > div > div > a > span.btn.btn-default.add2cart"));
         private IWebElement LocationButton => Driver.FindElement(By.CssSelector("#headerLocationLink > a > i"));
         private IWebElement CityButton => Driver.FindElement(By.CssSelector("#departments_listing > div.filters > div > div > ul > li:nth-child(10) > a"));
         private IWebElement ResultElement => Driver.FindElement(By.CssSelector("#departments_listing > div.container-fluid > div > div > span > span.name"));
@@ -104,19 +102,6 @@ namespace UogaUoga.ltAutoTests.Page
         {
             SearchIcon.Click();
         }
-
-        //public void ClickAddToCartShampoo()
-        //{
-        //    GetWait().Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("ajax_loader")));
-        //    AddToCartShampoo.Click();
-        //}
-
-        //public void ClickAddToCartMascara()
-        //{
-        //    GetWait().Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("ajax_loader")));
-        //    AddToCartMascara.Click();
-        //}
-
 
         public void ClickOnLocationButton()
         {
