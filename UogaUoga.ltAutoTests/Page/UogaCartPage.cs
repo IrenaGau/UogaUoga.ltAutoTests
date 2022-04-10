@@ -13,15 +13,9 @@ namespace UogaUoga.ltAutoTests.Page
     public class UogaCartPage : BasePage
     {
         public UogaCartPage(IWebDriver webdriver) : base(webdriver) { }
-        private IWebElement CartButton => Driver.FindElement(By.CssSelector("#cart_info > a > em"));
         private IWebElement IconPlusButton => Driver.FindElement(By.CssSelector("#cart_items > table > tbody > tr > td.amount.hidden-xs > form > div > div > span:nth-child(3) > button > span"));
         private IReadOnlyCollection<IWebElement> TotalSums => Driver.FindElements(By.XPath("//div[text()='Bendra suma:']//following::div[1]"));
 
-        public void ClickOnCartButton()
-        {
-            GetWait().Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("ajax_loader")));
-            CartButton.Click();
-        }
 
         public void ClickOnIconPlusButton()
         {

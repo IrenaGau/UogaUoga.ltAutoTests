@@ -13,6 +13,7 @@ namespace UogaUoga.ltAutoTests.Page
         public UogaSearchResultPage(IWebDriver webdriver) : base(webdriver) { }
         private IWebElement AddToCartShampoo => Driver.FindElement(By.CssSelector("#accordion > div.product_items > div > div > a > span.btn.btn-default.add2cart"));
         private IWebElement AddToCartMascara => Driver.FindElement(By.CssSelector("#accordion > div.product_items > div > div > a > span.btn.btn-default.add2cart"));
+        private IWebElement CartButton => Driver.FindElement(By.CssSelector("#cart_info > a > em"));
 
         public void ClickAddToCartShampoo()
         {
@@ -26,7 +27,11 @@ namespace UogaUoga.ltAutoTests.Page
             AddToCartMascara.Click();
         }
 
-
+        public void ClickOnCartButton()
+        {
+            GetWait().Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("ajax_loader")));
+            CartButton.Click();
+        }
     }
 
 
