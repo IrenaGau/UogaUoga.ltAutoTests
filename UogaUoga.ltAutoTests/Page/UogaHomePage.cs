@@ -11,14 +11,14 @@ using System.Linq;
 
 namespace UogaUoga.ltAutoTests.Page
 {
-    public class UogaUogaPage : BasePage
+    public class UogaHomePage : BasePage
     {
         private const string PageAddress = "https://uogauoga.lt/";
         private const string email = "naudotojas@yahoo.com";
         private const string password = "uoga";
         private const string text = "šampūnas vaikams";
         private const string text2 = "tušas";
-
+        public UogaHomePage(IWebDriver webdriver) : base(webdriver) { }
 
         private IWebElement PopUp => Driver.FindElement(By.CssSelector("#comProjectPopup > div > div:nth-child(2) > a"));
         private IWebElement Cookies => Driver.FindElement(By.CssSelector("#type_index > div.cookie_bar.clearfix > div > p > span"));
@@ -46,8 +46,8 @@ namespace UogaUoga.ltAutoTests.Page
         private IWebElement SortByPriceOption => Driver.FindElement(By.CssSelector("#filter_block > div > div.filter-group.sort_block > div.dropdown.hidden-xs.hidden-sm.open > div > ul > li:nth-child(2)"));
         private IWebElement SortResultElement => Driver.FindElement(By.CssSelector("#products_column > div.product_listing > div > div:nth-child(1) > a > span.title > span.product_name"));
         private IWebElement SortResultElement2 => Driver.FindElement(By.CssSelector("#products_column > div.product_listing > div > div:nth-child(2) > a > span.title > span.product_name"));
+
        
-        public UogaUogaPage(IWebDriver webdriver) : base(webdriver) { }
 
         public void NavigateToPage()
         {
@@ -61,7 +61,7 @@ namespace UogaUoga.ltAutoTests.Page
             PopUp.Click();
         }
 
-        public void CloseCookies()
+        public void AcceptCookies()
         {
             GetWait().Until(ExpectedConditions.ElementIsVisible(By.CssSelector("#type_index > div.cookie_bar.clearfix > div > p > span")));
             Cookies.Click();
@@ -140,7 +140,7 @@ namespace UogaUoga.ltAutoTests.Page
 
         public void VerifyTotalSum()
         {
-            Thread.Sleep(3000);
+            Thread.Sleep(5000);
             //GetWait().Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[text()='Bendra suma:']//following::div[1]")));
             Assert.IsTrue("47,85 €".Equals(TotalSums.ElementAt(1).Text), $"Text is not the same, actual text is {TotalSums.ElementAt(1).Text}");
         }
@@ -158,7 +158,7 @@ namespace UogaUoga.ltAutoTests.Page
         public void VerifyTextResult()
         {
             GetWait().Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("#departments_listing > div.container-fluid > div > div > span")));
-            Assert.AreEqual("RIMI Utena, \"Uoga Uoga\" produkcijos lentynos",ResultElement.Text, $"Text is not the same, actual text is {ResultElement.Text}");
+            Assert.AreEqual("RIMI Utena, \"Uoga Uoga\" produkcijos lentynos", ResultElement.Text, $"Text is not the same, actual text is {ResultElement.Text}");
             Assert.AreEqual("Basanavičiaus g. 52, Utena", ResultElementSecond.Text, $"Text is not the same, actual text is {ResultElementSecond.Text}");
         }
 
@@ -187,4 +187,3 @@ namespace UogaUoga.ltAutoTests.Page
 
     }
 }
-

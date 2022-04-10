@@ -8,8 +8,10 @@ namespace UogaUoga.ltAutoTests.Test
 {
     public class UogaUogaTest
     {
-        private static IWebDriver driver;
-        private static UogaUogaPage page;
+        public static IWebDriver driver;
+        public static UogaHomePage HomePage;
+        public static UogaCartPage CartPage;
+        public static UogaSearchResultPage SearchResultPage;
 
         [OneTimeSetUp]
         public static void OneTimeSetUp()
@@ -18,25 +20,27 @@ namespace UogaUoga.ltAutoTests.Test
             driver.Url = "https://uogauoga.lt/";
             driver.Manage().Window.Maximize();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
-            page = new UogaUogaPage(driver);
-            page.NavigateToPage();
-            page.ClosePopUp();
-            page.CloseCookies();
+            HomePage = new UogaHomePage(driver);
+            CartPage = new UogaCartPage(driver);
+            SearchResultPage = new UogaSearchResultPage(driver);
+            HomePage.NavigateToPage();
+            HomePage.ClosePopUp();
+            HomePage.AcceptCookies();
         }
 
         [OneTimeTearDown]
         public static void OneTimeTearDown()
         {
-            page.CloseBrowser();
+            HomePage.CloseBrowser();
         }
 
         [Test]
         public static void TestSignInSignOut()
         {
-            page.ProfileIconClick();
-            page.InputFieldEmailSubmit();
-            page.InputFieldPasswordSubmit();
-            page.SignOut();
+            HomePage.ProfileIconClick();
+            HomePage.InputFieldEmailSubmit();
+            HomePage.InputFieldPasswordSubmit();
+            HomePage.SignOut();
         }
 
         [Test]
