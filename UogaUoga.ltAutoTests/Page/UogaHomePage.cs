@@ -35,7 +35,7 @@ namespace UogaUoga.ltAutoTests.Page
         private IWebElement CityButton => Driver.FindElement(By.CssSelector("#departments_listing > div.filters > div > div > ul > li:nth-child(10) > a"));
         private IWebElement ResultElement => Driver.FindElement(By.CssSelector("#departments_listing > div.container-fluid > div > div > span > span.name"));
         private IWebElement ResultElementSecond => Driver.FindElement(By.CssSelector("#departments_listing > div.container-fluid > div > div > span > span:nth-child(2)"));
-        
+
 
         public void NavigateToPage()
         {

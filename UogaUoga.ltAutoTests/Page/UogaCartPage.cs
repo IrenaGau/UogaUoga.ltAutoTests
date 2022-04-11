@@ -26,6 +26,5 @@ namespace UogaUoga.ltAutoTests.Page
             Thread.Sleep(5000);
             Assert.IsTrue("47,85 €".Equals(TotalSums.ElementAt(1).Text), $"Text is not the same, actual text is {TotalSums.ElementAt(1).Text}");
         }
-
     }
 }

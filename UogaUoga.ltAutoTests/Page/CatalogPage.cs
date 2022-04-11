@@ -38,7 +38,7 @@ namespace UogaUoga.ltAutoTests.Page
         public void VerifySortResult()
         {
             Assert.AreEqual("BLAKSTIENŲ DRAMA", SortResultElement.Text, $"Text is not the same, actual text is {SortResultElement.Text}");
-            Assert.AreEqual("PAMILK IŠ NAUJO", SortResultElement2.Text, $"Text is not the same, actual text is {SortResultElement2.Text}");
+            Assert.AreEqual("DVIPUSIS ŠEPETĖLIS AKIŲ ŠEŠĖLIAMS", SortResultElement2.Text, $"Text is not the same, actual text is {SortResultElement2.Text}");
         }
     }
 }
