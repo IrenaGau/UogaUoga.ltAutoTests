@@ -1,13 +1,8 @@
-﻿using System;
-using UogaUoga.ltAutoTests.Page;
-using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+﻿using NUnit.Framework;
 
 namespace UogaUoga.ltAutoTests.Test
 {
     public class UogaUogaTest : BaseTest
-
     {
         [Test]
         public static void TestSignInSignOut()
@@ -16,14 +11,16 @@ namespace UogaUoga.ltAutoTests.Test
             _HomePage.InputFieldEmailSubmit();
             _HomePage.InputFieldPasswordSubmit();
             _HomePage.SignOut();
+            _HomePage.VerifySignOut();  
         }
 
         [Test]
-        public static void AddToCartBySearch()
+        public static void SearchByTextTest()
         {
             _HomePage.SearchByText();
             _HomePage.ClickOnSearchIcon();
-            _SearchResultPage.ClickAddToCartShampoo();
+            _SearchResultPage.ClickOnKidsShampoo();
+            _SearchResultPage.VerifyShampooName();
         }
 
         [Test]
@@ -53,6 +50,5 @@ namespace UogaUoga.ltAutoTests.Test
             _CatalogPage.SortByPrice();
             _CatalogPage.VerifySortResult();
         }
-
     }
 }

@@ -1,13 +1,6 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using OpenQA.Selenium.Support.UI;
-using System.Text;
-using System.Threading.Tasks;
 using SeleniumExtras.WaitHelpers;
 using NUnit.Framework;
-using System.Threading;
-using System.Linq;
 
 namespace UogaUoga.ltAutoTests.Page
 {
@@ -28,6 +21,7 @@ namespace UogaUoga.ltAutoTests.Page
         private IWebElement EmailSubmitButton => Driver.FindElement(By.CssSelector("#login_form > div:nth-child(3) > button"));
         private IWebElement PasswordSubmitButton => Driver.FindElement(By.CssSelector("#login_form > div:nth-child(4) > button"));
         private IWebElement ProfileMenuSignOut => Driver.FindElement(By.CssSelector("#profile_menu > ul > li:nth-child(3) > a"));
+        private IWebElement AssertSignOutText => Driver.FindElement(By.CssSelector("#customers_prelogin > h1"));
         private IWebElement SearchField => Driver.FindElement(By.CssSelector("#quick_search_show > i"));
         private IWebElement SearchIcon => Driver.FindElement(By.CssSelector("#quick_search > form > div > span > button > i"));
         private IWebElement InputField => Driver.FindElement(By.CssSelector("#quick_search > form > div > input"));
@@ -81,7 +75,13 @@ namespace UogaUoga.ltAutoTests.Page
             GetWait().Until(ExpectedConditions.ElementIsVisible(By.CssSelector("#profile_menu > ul")));
             ProfileMenuSignOut.Click();
         }
-
+        public void VerifySignOut()
+        {
+            GetWait().Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("item")));
+            ProfileIcon.Click();
+            GetWait().Until(ExpectedConditions.ElementIsVisible(By.CssSelector("#customers_authorize")));
+            Assert.IsTrue("Prisistatyk".Equals(AssertSignOutText.Text), $"Text is not the same, actual text is {AssertSignOutText.Text}");
+        }
         public void SearchByText()
         {
             GetWait().Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("ajax_loader")));
@@ -119,6 +119,5 @@ namespace UogaUoga.ltAutoTests.Page
             Assert.AreEqual("RIMI Utena, \"Uoga Uoga\" produkcijos lentynos", ResultElement.Text, $"Text is not the same, actual text is {ResultElement.Text}");
             Assert.AreEqual("Basanavičiaus g. 52, Utena", ResultElementSecond.Text, $"Text is not the same, actual text is {ResultElementSecond.Text}");
         }
-
     }
 }

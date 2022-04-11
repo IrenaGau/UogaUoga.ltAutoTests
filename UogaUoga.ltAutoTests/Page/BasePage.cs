@@ -6,7 +6,6 @@ namespace UogaUoga.ltAutoTests.Page
 {
     public class BasePage
     {
-
         protected static IWebDriver Driver;
 
         public BasePage(IWebDriver webdriver)

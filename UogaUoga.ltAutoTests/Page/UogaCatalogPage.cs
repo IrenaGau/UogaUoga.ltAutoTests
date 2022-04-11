@@ -1,17 +1,12 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UogaUoga.ltAutoTests.Page
 {
-    public class CatalogPage : BasePage
+    public class UogaCatalogPage : BasePage
     {
-        public CatalogPage(IWebDriver webdriver) : base(webdriver) { }
+        public UogaCatalogPage(IWebDriver webdriver) : base(webdriver) { }
         private IWebElement NewsButton => Driver.FindElement(By.CssSelector("#mega_menu > li:nth-child(1) > a > h4"));
         private IWebElement SelectVegan => Driver.FindElement(By.CssSelector("#filter_fmodcheck_6 > h5 > span"));
         private IWebElement SortByButton => Driver.FindElement(By.CssSelector("#filter-dropdown-sort_by"));

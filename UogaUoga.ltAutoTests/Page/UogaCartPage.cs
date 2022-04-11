@@ -1,12 +1,10 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace UogaUoga.ltAutoTests.Page
 {
@@ -23,8 +21,8 @@ namespace UogaUoga.ltAutoTests.Page
 
         public void VerifyTotalSum()
         {
-            Thread.Sleep(5000);
-            Assert.IsTrue("47,85 €".Equals(TotalSums.ElementAt(1).Text), $"Text is not the same, actual text is {TotalSums.ElementAt(1).Text}");
+           Thread.Sleep(4000);
+           Assert.IsTrue("39,90 €".Equals(TotalSums.ElementAt(1).Text), $"Text is not the same, actual text is {TotalSums.ElementAt(1).Text}");
         }
     }
 }

@@ -1,24 +1,27 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UogaUoga.ltAutoTests.Page
 {
     public class UogaSearchResultPage : BasePage
     {
         public UogaSearchResultPage(IWebDriver webdriver) : base(webdriver) { }
-        private IWebElement AddToCartShampoo => Driver.FindElement(By.CssSelector("#accordion > div.product_items > div > div > a > span.btn.btn-default.add2cart"));
+        private IWebElement Kidshampoo => Driver.FindElement(By.CssSelector("#accordion > div.product_items > div > div > a > span.img-wrapper > span > picture > img"));
+        private IWebElement KidshampooName => Driver.FindElement(By.CssSelector("#products_detailed > div.product_block > div > div > div.col-md-6.col-xs-12.summary_wrp > h1"));
         private IWebElement AddToCartMascara => Driver.FindElement(By.CssSelector("#accordion > div.product_items > div > div > a > span.btn.btn-default.add2cart"));
         private IWebElement CartButton => Driver.FindElement(By.CssSelector("#cart_info > a > em"));
 
-        public void ClickAddToCartShampoo()
+        public void ClickOnKidsShampoo()
         {
             GetWait().Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("ajax_loader")));
-            AddToCartShampoo.Click();
+            Kidshampoo.Click();
+        }
+
+        public void VerifyShampooName()
+        {
+            GetWait().Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("ajax_loader")));
+            Assert.AreEqual("VĖŽLIUKAS KOKO", KidshampooName.Text, $"Text is not the same, actual text is {KidshampooName.Text}");
         }
 
         public void ClickAddToCartMascara()
@@ -33,11 +36,4 @@ namespace UogaUoga.ltAutoTests.Page
             CartButton.Click();
         }
     }
-
-
-
-
-
-
-
 }

@@ -3,10 +3,6 @@ using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UogaUoga.ltAutoTests.Page;
 using UogaUoga.ltAutoTests.Tools;
 
@@ -18,7 +14,7 @@ namespace UogaUoga.ltAutoTests.Test
         public static UogaHomePage _HomePage;
         public static UogaCartPage _CartPage;
         public static UogaSearchResultPage _SearchResultPage;
-        public static CatalogPage _CatalogPage;
+        public static UogaCatalogPage _CatalogPage;
 
         [OneTimeSetUp]
         public static void OneTimeSetUp()
@@ -30,7 +26,7 @@ namespace UogaUoga.ltAutoTests.Test
             _HomePage = new UogaHomePage(driver);
             _CartPage = new UogaCartPage(driver);
             _SearchResultPage = new UogaSearchResultPage(driver);
-            _CatalogPage = new CatalogPage(driver);
+            _CatalogPage = new UogaCatalogPage(driver);
             _HomePage.NavigateToPage();
             _HomePage.ClosePopUp();
             _HomePage.AcceptCookies();
