@@ -44,7 +44,7 @@ namespace UogaUoga.ltAutoTests.Test
         [OneTimeTearDown]
         public static void OneTimeTearDown()
         {
-            _HomePage.CloseBrowser();
+            driver.Quit();
         }
     }
 }
