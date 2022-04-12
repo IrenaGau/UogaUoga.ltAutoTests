@@ -16,13 +16,14 @@ namespace UogaUoga.ltAutoTests.Page
 
         public void ClickOnIconPlusButton()
         {
+            GetWait().Until(ExpectedConditions.ElementIsVisible(By.CssSelector("#cart_items > table > tbody > tr > td.amount.hidden-xs > form > div > div > span:nth-child(3) > button > span")));
             IconPlusButton.Click();
         }
 
         public void VerifyTotalSum()
         {
-           Thread.Sleep(4000);
-           Assert.IsTrue("39,90 €".Equals(TotalSums.ElementAt(1).Text), $"Text is not the same, actual text is {TotalSums.ElementAt(1).Text}");
+            Thread.Sleep(4000);
+            Assert.IsTrue("39,90 €".Equals(TotalSums.ElementAt(1).Text), $"Text is not the same, actual text is {TotalSums.ElementAt(1).Text}");
         }
     }
 }

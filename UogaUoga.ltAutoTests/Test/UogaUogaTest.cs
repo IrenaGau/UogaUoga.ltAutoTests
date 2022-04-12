@@ -11,7 +11,7 @@ namespace UogaUoga.ltAutoTests.Test
             _HomePage.InputFieldEmailSubmit();
             _HomePage.InputFieldPasswordSubmit();
             _HomePage.SignOut();
-            _HomePage.VerifySignOut();  
+            _HomePage.VerifySignOut();
         }
 
         [Test]
