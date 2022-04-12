@@ -7,8 +7,8 @@ namespace UogaUoga.ltAutoTests.Page
     public class UogaHomePage : BasePage
     {
         private const string PageAddress = "https://uogauoga.lt/";
-        private const string email = "naudotojas@yahoo.com";
-        private const string password = "uoga";
+        private const string email = "demo@demo.com";
+        private const string password = "demo";
         private const string text = "šampūnas vaikams";
         private const string text2 = "tušas";
         public UogaHomePage(IWebDriver webdriver) : base(webdriver) { }
